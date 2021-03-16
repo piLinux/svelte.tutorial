@@ -17,13 +17,20 @@ export default {
 	},
 	plugins: [
 		svelte({
-			// enable run-time checks when not in production
-			dev: !production,
-			// we'll extract any component CSS out into
-			// a separate file — better for performance
-			css: css => {
-				css.write('public/bundle.css');
-			}
+			// Emit CSS as "files" for other plugins to process
+			// default is true
+			emitCss: false,
+
+			compilerOptions: {
+				// enable run-time checks when not in production
+				dev: !production,
+
+				// extract any component CSS out into
+				// a separate file — for better performance
+				css: css => {
+					css.write('public/bundle.css');
+				},
+			},
 		}),
 
 		// If you have external dependencies installed from
