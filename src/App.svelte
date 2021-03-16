@@ -21,6 +21,11 @@
 	function changeName() {
 		name = 'Maximus';
 	}
+
+	function inputName(event) {
+		const inputValue = event.target.value;
+		name = inputValue;
+	}
 </script>
 
 <style>
@@ -32,3 +37,7 @@
 <h1>Hello {upperCaseName}, my age is {age}!</h1>
 <button on:click="{incrementAge}">Change Age</button>
 <button on:click="{changeName}">Change Name</button>
+<hr><br>
+
+<!-- updates name with every keystroke -->
+<input type="text" value="{name}" on:input="{inputName}">
