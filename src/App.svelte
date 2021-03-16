@@ -41,3 +41,6 @@
 
 <!-- updates name with every keystroke -->
 <input type="text" value="{name}" on:input="{inputName}">
+<br>
+<!-- two-way binding shortcut -->
+<input type="text" bind:value="{name}">
