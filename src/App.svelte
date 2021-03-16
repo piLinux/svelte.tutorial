@@ -5,6 +5,15 @@
 	// let upperCaseName; => not required
 	$: upperCaseName = name.toUpperCase();
 
+	// output in browser's console
+	$: console.log(name);
+
+	// executed ONLY when the name is changed
+	$: if (name === 'Maximus') {
+		console.log('Button clicked!');
+		age = 35;
+	}
+
 	function incrementAge() {
 		age += 1;
 	}
