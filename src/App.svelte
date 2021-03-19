@@ -1,6 +1,11 @@
 <script>
+	import ContactCard from "./ContactCard.svelte";
+
 	let name = 'Max';
 	let age = 30;
+	let jobTitle = 'Job Title';
+	let userImage = 'https://cdn.pilinux.me/images/GoREST/logo/GoREST-Logo.png';
+	let description = 'Description';
 
 	// let upperCaseName; => not required
 	$: upperCaseName = name.toUpperCase();
@@ -44,3 +49,19 @@
 <br>
 <!-- two-way binding shortcut -->
 <input type="text" bind:value="{name}">
+<br>
+<br>
+
+<input type="text" bind:value="{jobTitle}">
+<br>
+<input type="text" bind:value="{userImage}">
+<br>
+<input type="text" bind:value="{description}">
+
+<!-- example: self-extending properties -> description="{description}" -->
+<ContactCard
+userName="{name}"
+jobTitle="{jobTitle}"
+userImage="{userImage}"
+{description}
+/>
