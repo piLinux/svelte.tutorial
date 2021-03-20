@@ -3,11 +3,11 @@
 
 	let name = 'Max';
 	let age = 30;
-	let jobTitle = 'Job Title';
-	let userImage = 'https://cdn.pilinux.me/images/GoREST/logo/GoREST-Logo.png';
-	let description = 'Description';
+	let jobTitle = '';
+	let userImage = '';
+	let description = '';
 	
-	let done = false;
+	let formState = "initial";
 
 	// let upperCaseName; => not required
 	$: upperCaseName = name.toUpperCase();
@@ -35,7 +35,17 @@
 	}
 
 	function createCard() {
-		done = true;
+		if (
+			name.trim().length === 0 ||
+			jobTitle.trim().length === 0 ||
+			userImage.trim().length === 0 ||
+			description.trim().length === 0
+		) {
+			formState = "invalid";
+			return;
+		}
+
+		formState = "valid";
 	}
 </script>
 
@@ -80,7 +90,8 @@
 
 <button on:click="{createCard}">Create Card</button>
 
-{#if done}
+{#if formState === "valid"}
+
 <hr>
 <br>
 <!-- example: self-extending properties -> description="{description}" -->
@@ -90,4 +101,11 @@ jobTitle="{jobTitle}"
 userImage="{userImage}"
 {description}
 />
+
+{:else if formState === "invalid"}
+<p>All fields are required!</p>
+
+{:else}
+<p>Please complete the form!</p>
+
 {/if}
