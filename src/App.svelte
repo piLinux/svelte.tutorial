@@ -6,6 +6,8 @@
 	let jobTitle = 'Job Title';
 	let userImage = 'https://cdn.pilinux.me/images/GoREST/logo/GoREST-Logo.png';
 	let description = 'Description';
+	
+	let done = false;
 
 	// let upperCaseName; => not required
 	$: upperCaseName = name.toUpperCase();
@@ -31,11 +33,20 @@
 		const inputValue = event.target.value;
 		name = inputValue;
 	}
+
+	function createCard() {
+		done = true;
+	}
 </script>
 
 <style>
 	h1 {
 		color: purple;
+	}
+	
+	#form {
+		width: 30rem;
+		max-width: 100%;
 	}
 </style>
 
@@ -44,20 +55,34 @@
 <button on:click="{changeName}">Change Name</button>
 <hr><br>
 
-<!-- updates name with every keystroke -->
-<input type="text" value="{name}" on:input="{inputName}">
-<br>
-<!-- two-way binding shortcut -->
-<input type="text" bind:value="{name}">
-<br>
+<div id="form">
+	<div class="form-control">
+		<label for="userName">User Name</label><br>
+		<input type="text" bind:value={name} id="userName" />
+	</div>
+	<br>
+	<div class="form-control">
+		<label for="jobTitle">Job Title</label><br>
+		<input type="text" bind:value={jobTitle} id="jobTitle" />
+	</div>
+	<br>
+	<div class="form-control">
+		<label for="image">Image URL</label><br>
+		<input type="text" bind:value={userImage} id="image" />
+	</div>
+	<br>
+	<div class="form-control">
+		<label for="desc">Description</label><br>
+		<textarea rows="3" bind:value={description} id="desc" />
+	</div>
+</div>
 <br>
 
-<input type="text" bind:value="{jobTitle}">
-<br>
-<input type="text" bind:value="{userImage}">
-<br>
-<input type="text" bind:value="{description}">
+<button on:click="{createCard}">Create Card</button>
 
+{#if done}
+<hr>
+<br>
 <!-- example: self-extending properties -> description="{description}" -->
 <ContactCard
 userName="{name}"
@@ -65,3 +90,4 @@ jobTitle="{jobTitle}"
 userImage="{userImage}"
 {description}
 />
+{/if}
