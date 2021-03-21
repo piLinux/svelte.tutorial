@@ -6,6 +6,8 @@
 	let jobTitle = '';
 	let userImage = '';
 	let description = '';
+
+	let createNewCard;
 	
 	let formState = "initial";
 
@@ -44,6 +46,14 @@
 			formState = "invalid";
 			return;
 		}
+
+		// key-value pair
+		createNewCard = {
+			name: name,
+			jobTitle: jobTitle,
+			userImage: userImage,
+			description: description
+		};
 
 		formState = "valid";
 	}
@@ -94,12 +104,12 @@
 
 <hr>
 <br>
-<!-- example: self-extending properties -> description="{description}" -->
+<!-- No live update anymore -->
 <ContactCard
-userName="{name}"
-jobTitle="{jobTitle}"
-userImage="{userImage}"
-{description}
+userName="{createNewCard.name}"
+jobTitle="{createNewCard.jobTitle}"
+userImage="{createNewCard.userImage}"
+description="{createNewCard.description}"
 />
 
 {:else if formState === "invalid"}
