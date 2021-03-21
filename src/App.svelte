@@ -7,7 +7,7 @@
 	let userImage = '';
 	let description = '';
 
-	let createNewCard;
+	let createNewCards = [];
 	
 	let formState = "initial";
 
@@ -48,12 +48,15 @@
 		}
 
 		// key-value pair
-		createNewCard = {
-			name: name,
-			jobTitle: jobTitle,
-			userImage: userImage,
-			description: description
-		};
+		createNewCards = [
+			...createNewCards,
+			{
+				name: name,
+				jobTitle: jobTitle,
+				userImage: userImage,
+				description: description
+			}
+		];
 
 		formState = "valid";
 	}
@@ -104,13 +107,16 @@
 
 <hr>
 <br>
+{#each createNewCards as newCard}
 <!-- No live update anymore -->
 <ContactCard
-userName="{createNewCard.name}"
-jobTitle="{createNewCard.jobTitle}"
-userImage="{createNewCard.userImage}"
-description="{createNewCard.description}"
+userName="{newCard.name}"
+jobTitle="{newCard.jobTitle}"
+userImage="{newCard.userImage}"
+description="{newCard.description}"
 />
+<br>
+{/each}
 
 {:else if formState === "invalid"}
 <p>All fields are required!</p>
