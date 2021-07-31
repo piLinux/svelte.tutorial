@@ -67,7 +67,7 @@
   <header>
     <!-- dynamic CSS class -->
     <div class="thumb" class:thumb-placeholder="{!userImage}">
-      <img src="{userImage}" alt="{userName}" onerror="this.src='https://cdn.pilinux.me/images/GoREST/logo/GoREST-Logo.png'" />
+      <img src="{userImage}" alt="{userName}" onerror="this.src='https://cdn.pilinux.workers.dev/images/GoREST/logo/GoREST-Logo.png'" />
     </div>
     <div class="user-data">
       <h1>{userName}</h1>
